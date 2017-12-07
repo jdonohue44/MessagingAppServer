@@ -16,9 +16,9 @@ public class MessageReader extends Thread {
     public void run() {
         while (true) {
             try {
-                System.out.println(client);
                 if (client.getClientMessageReader().ready()) {
                     synchronized (messageQueue) {
+                        System.out.println(client);
                         messageQueue.add(new ChatRoomServer.Message(client.getClientMessageReader().readLine(),
                                 ChatRoomServer.numClients));
                         messageQueue.notifyAll();
